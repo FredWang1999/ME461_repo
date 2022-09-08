@@ -601,12 +601,12 @@ __interrupt void RXAINT_recv_ready(void)
     SciaRegs.SCIFFRX.bit.RXFFINTCLR = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP9;
 
-    //turning on and off leds by pressing a and b in terminal
+    // when 'a' or 'b' is sent via serial port, the red led on GPIO 34 is turned on or off, as required in lab1 manual.
     if (RXAdata == 'a'){
-        GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;
+        GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;// when 'a' is sent, clear the GPIO so the red LED is turned on
     }
     else if (RXAdata == 'b'){
-        GpioDataRegs.GPBSET.bit.GPIO34 = 1;
+        GpioDataRegs.GPBSET.bit.GPIO34 = 1;// when 'b' is sent, set the GPIO so the red LED is turned off
     }
 
 }
